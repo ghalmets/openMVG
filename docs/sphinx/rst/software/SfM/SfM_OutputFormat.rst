@@ -10,7 +10,7 @@ SfM_Data is a data container. It contains:
 - **Intrinsics**
   - intrinsics camera parameters
 - **Poses**
-  - extrinsic camera parameters
+  - extrinsic camera parameters R and C as defined in ../../openMVG/cameras/cameras.rst
 - **Landmarks**
   - 3D points and their 2D Observations
 
