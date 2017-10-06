@@ -16,6 +16,8 @@ list(REMOVE_ITEM sfm_files_cpp ${REMOVEFILESUNITTEST})
 file(GLOB_RECURSE REMOVEFILESUNITTEST *_test.hpp)
 list(REMOVE_ITEM sfm_files_header ${REMOVEFILESUNITTEST})
 
+find_package(Boost  COMPONENTS filesystem system REQUIRED)
+
 add_library(openMVG_sfm ${sfm_files_header} ${sfm_files_cpp})
 target_link_libraries(
   openMVG_sfm
@@ -27,6 +29,8 @@ target_link_libraries(
     openMVG_lInftyComputerVision
     openMVG_system
     openMVG_matching
+${Boost_FILESYSTEM_LIBRARY}
+${Boost_SYSTEM_LIBRARY}
 )
 target_include_directories(
   openMVG_sfm
