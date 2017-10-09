@@ -44,14 +44,6 @@ public:
 		std::fstream write;
 		double num_observations_;
 
-		time_t rawtime;
-		struct tm * timeinfo;
-		char buffer[80];
-		time (&rawtime);
-		timeinfo = localtime(&rawtime);
-		strftime(buffer,80,"%Y%m%d%__H%M%S",timeinfo);
-		std::string time(buffer);
-
 		write.open(path+"/bal.data", std::fstream::out);
 
 		num_observations_= double(observations.size()) ;
@@ -72,9 +64,9 @@ public:
 			write	<<	camera_poses[i][4] << "\n" ;
 			write	<<	camera_poses[i][5] << "\n" ;
 
-			write	<< 0.0 << "\n" ; //f
-			write	<<	0.0 << "\n" ; //k1
-			write	<<	0.0 << "\n" ; //k2
+			write	<< 0.0 << "\n" ; //f, not exported
+			write	<<	0.0 << "\n" ; //k1, not exported
+			write	<<	0.0 << "\n" ; //k2, not exported
 		}
 		for(size_t i=0; i<num_keypoints; i++){
 			for(size_t j=0; j<3; j++){
@@ -253,7 +245,6 @@ inline bool Save_BAL(
 
 		std::vector <std::vector <double> >keypoints(num_landmarks, std::vector<double>(3));
 
-
 		//Export Features
 		unsigned int i=0;
 		for (const auto & iterLandmarks : landmarks )
@@ -284,7 +275,6 @@ inline bool Save_BAL(
 				uv[1]= iterOb.second.x(1);
 
 				observations.addObservation(view_key, i, uv);
-
 			}
 			i++;
 
@@ -315,7 +305,7 @@ inline bool Save_BAL(
 		stream.close();
 	}
 
-	// Export depth data filenames & ids as an imgList.txt file
+//Export Images
 	{
 
 		const char* path = filename.c_str();
@@ -377,9 +367,5 @@ inline bool Save_BAL(
 } // namespace sfm
 } // namespace openMVG
 
-
-
-// This algorithm comes from "Quaternion Calculus and Fast Animation",
-// Ken Shoemake, 1987 SIGGRAPH course notes
 
 #endif // OPENMVG_SFM_SFM_DATA_IO_BAL_HPP
