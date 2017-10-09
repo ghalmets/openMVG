@@ -14,6 +14,7 @@
 #include "openMVG/sfm/sfm_data.hpp"
 #include "openMVG/sfm/sfm_data_io.hpp"
 #include "openMVG/sfm/sfm_data_io_baf.hpp"
+#include "openMVG/sfm/sfm_data_io_bal.hpp"
 #include "openMVG/sfm/sfm_data_io_cereal.hpp"
 #include "openMVG/sfm/sfm_data_io_ply.hpp"
 #include "openMVG/stl/stlMap.hpp"
@@ -109,6 +110,8 @@ bool Save(const SfM_Data & sfm_data, const std::string & filename, ESfM_Data fla
     return Save_PLY(sfm_data, filename, flags_part);
   else if (ext == "baf") // Bundle Adjustment file
     return Save_BAF(sfm_data, filename, flags_part);
+  else if (ext == "bal") // Bundle Adjustment file 2
+	return Save_BAL(sfm_data, filename, flags_part);
   else
   {
     std::cerr << "Unknown sfm_data export format: " << ext << std::endl;
