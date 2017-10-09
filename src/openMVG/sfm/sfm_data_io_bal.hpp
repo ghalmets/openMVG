@@ -146,7 +146,7 @@ private:
 
 /// Save SfM_Data in an ASCII BAL (Bundle Adjustment in the Large). And exports RGB (& depth files) to camera_index.png
 //format: http://grail.cs.washington.edu/projects/bal/
-//exports in addition all rgb and depth data ordered from 0...1
+//exports in addition all rgb and depth data ordered from 0...n
 
 
 inline bool Save_BAL(
